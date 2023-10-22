@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="center"></div>
+    <style>
+      /** Body Style **/
+      body {
+        background-color: black;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /** Rectangle Style **/
+      #center {
+        background: white;
+        width: 500px;
+        height: 250px;
+        position: absolute;
+        top: 30%;
+        left: 30%;
+      }
+    </style>
+    <script>
+      const rectangle = document.querySelector("#center");
+      rectangle.addEventListener("mousemove", (event) => {
+        let mid_point = rectangle.offsetWidth / 2;
+        if (event.layerX <= mid_point) {
+          let percent = 100 - (event.layerX / mid_point) * 100;
+          let color_val = (percent / 100) * 255;
+          rectangle.style.backgroundColor = `rgb(0, 0, ${color_val})`;
+        } else {
+          let percent = ((event.layerX - mid_point) / mid_point) * 100;
+          let color_val = (percent / 100) * 255;
+          rectangle.style.backgroundColor = `rgb(${color_val}, 0, 0)`;
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+ <!-- Make a rectangle and when we move mouse on that rectangle on the left side we want to gradually change the color of
+the rectangle to red and when we move mouse to the right side we want to change the color to blue accoring to strength at end high using js -->
